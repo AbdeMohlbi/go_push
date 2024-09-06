@@ -26,8 +26,8 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: push-windows-exe
-        path: push.exe
+        name: push-${{github.run_number}}.exe
+        path: push-${{github.run_number}}.exe
 
   release:
     needs: build
@@ -41,7 +41,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v3
         with:
-          name: push-windows-exe
+          name: push-${{github.run_number}}.exe
 
       # Create a release
       - name: Create GitHub Release
@@ -60,6 +60,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: push.exe
+          asset_path: push-${{github.run_number}}.exe
           asset_name: push-v${{ github.run_number }}.exe
           asset_content_type: application/octet-stream
