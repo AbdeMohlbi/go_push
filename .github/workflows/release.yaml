@@ -22,15 +22,14 @@ jobs:
       run: |
         GOOS=windows GOARCH=amd64 go build -o push-${{github.run_number}}.exe
       # You can customize the output name or add additional build steps if needed
-
    # Upload the build artifact
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: push-windows-exe
-          path: push.exe
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: push-windows-exe
+        path: push.exe
 
-  release:
+release:
     needs: build
     runs-on: ubuntu-latest
     steps:
