@@ -28,3 +28,9 @@ jobs:
       with:
         name: windows-executable
         path: push-${{github.run_number}}.exe
+
+    - name: Create Release
+        uses: ncipollo/release-action@v1.10.0
+        with:
+          tag: path_go.${{github.run_number}}
+          artifacts:  push-${{github.run_number}}.exe
