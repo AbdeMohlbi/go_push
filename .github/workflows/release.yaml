@@ -5,7 +5,7 @@ on:
     branches:
       - master
 
-obs:
+jobs:
   build:
     runs-on: ubuntu-latest  # GitHub Actions will run this job on an Ubuntu VM
 
