@@ -7,7 +7,7 @@ on:
 
 permissions:
   contents: write  # This gives the workflow access to create releases
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest  # GitHub Actions will run this job on an Ubuntu VM
@@ -64,5 +64,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: push-${{github.run_number}}.exe
-          asset_name: push-v${{ github.run_number }}.exe
+          asset_name: push-v${{github.run_number}}.exe
           asset_content_type: application/octet-stream
