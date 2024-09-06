@@ -59,10 +59,22 @@ jobs:
           prerelease: false
 
       # Upload the .exe to the release
-      - name: Upload .exe to release
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: push-${{github.run_number}}.exe
-          asset_name: push-v${{github.run_number}}.exe
-          asset_content_type: application/octet-stream
+      # - name: Upload .exe to release
+      #   uses: actions/upload-release-asset@v1
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: push-${{github.run_number}}.exe
+      #     asset_name: push-v${{github.run_number}}.exe
+      #     asset_content_type: application/octet-stream
+        - name: Upload to Release Action
+          uses: Shopify/upload-to-release@v2.0.0
+          with:
+    # Artifact name
+            name: push-v${{github.run_number}}.exe
+    # Path to the file to upload
+            path: push-${{github.run_number}}.exe
+    # Content type for the file
+        # content-type: # optional, default is application/octet-stream
+    # secrets.GITHUB_TOKEN
+            repo-token:  ${{ secrets.GITHUB_TOKEN }}
+          
