@@ -66,9 +66,9 @@ jobs:
       #     asset_path: push-${{github.run_number}}.exe
       #     asset_name: push-v${{github.run_number}}.exe
       #     asset_content_type: application/octet-stream
-        - name: Upload to Release Action
-          uses: Shopify/upload-to-release@v2.0.0
-          with:
+      - name: Upload to Release Action
+        uses: Shopify/upload-to-release@v2.0.0
+        with:
     # Artifact name
             name: push-v${{github.run_number}}.exe
     # Path to the file to upload
