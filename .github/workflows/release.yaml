@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write  # This gives the workflow access to create releases
+  
 jobs:
   build:
     runs-on: ubuntu-latest  # GitHub Actions will run this job on an Ubuntu VM
