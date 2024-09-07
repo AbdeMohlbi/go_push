@@ -47,34 +47,20 @@ jobs:
           name: push-${{github.run_number}}.exe
 
       # Create a release
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ github.run_number }} # Use the run number as the version
-          release_name: "Release v${{ github.run_number }}"
-          draft: false
-          prerelease: false
-
-      # Upload the .exe to the release
-      # - name: Upload .exe to release
-      #   uses: actions/upload-release-asset@v1
+      # - name: Create GitHub Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     asset_path: push-${{github.run_number}}.exe
-      #     asset_name: push-v${{github.run_number}}.exe
-      #     asset_content_type: application/octet-stream
-      - name: Upload to Release Action
-        uses: Shopify/upload-to-release@v2.0.0
+      #     tag_name: v${{ github.run_number }} # Use the run number as the version
+      #     release_name: "Release v${{ github.run_number }}"
+      #     draft: false
+      #     prerelease: false
+      - name: Upload the Rodeo binaries
+        uses: svenstaro/upload-release-action@v2
         with:
-    # Artifact name
-            name: push-v${{github.run_number}}.exe
-    # Path to the file to upload
-            path: push-${{github.run_number}}.exe
-    # Content type for the file
-        # content-type: # optional, default is application/octet-stream
-    # secrets.GITHUB_TOKEN
-            repo-token:  ${{ secrets.GITHUB_TOKEN }}
-          
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          file: push-${{github.run_number}}.exe
+          file_glob: true
